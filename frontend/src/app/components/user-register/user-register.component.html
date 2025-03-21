@@ -1,0 +1,82 @@
+<div class="create-article-main">
+    <form class="create-article-form" [formGroup]="registerFormGroup" (submit)="onSubmit()">
+        <div class="app-title-login-form">
+            <img src="assets/images/app-banner.png" alt="logo" class="logo">
+        </div>
+        <div>
+            <div class="error-banner" *ngIf="errorMessage != ''">
+                <img src="assets/images/error-image.png" alt="error-image" class="error-image">
+                <div style="margin-left: 10px;">
+                    {{errorMessage}}
+                </div>
+            </div>
+            <div class="field-set">
+                Name:
+                <div style="margin-top: 5px; margin-right: 5px;">
+                    <input type="text" class="rounded-textbox" style="width: 100%;" formControlName="Name">
+                </div>
+                <div *ngIf="isControlInvalid('Name') && getFormControl('Name').hasError('required')" style="color: red; font-size: 12px; margin-left: 7px;">
+                    Name is required
+                </div>
+            </div>
+            <div class="field-set">
+                Email:
+                <div style="margin-top: 5px; margin-right: 5px;">
+                    <input type="email" class="rounded-textbox" style="width: 100%;" formControlName="Email">
+                </div>
+                <div *ngIf="isControlInvalid('Email')" style="color: red; font-size: 12px; margin-left: 7px;">
+                    <span *ngIf="getFormControl('Email').hasError('required')">
+                        Email is required!
+                    </span>
+                    <span *ngIf="getFormControl('Email').hasError('email')">
+                        Invalid email format!
+                    </span>
+                </div>
+            </div>
+            
+            <hr style="margin: 15px;">
+
+            <div class="field-set">
+                Username:
+                <div style="margin-top: 5px; margin-right: 5px;">
+                    <input type="text" class="rounded-textbox" style="width: 100%;" formControlName="UserName">
+                </div>
+                <div *ngIf="isControlInvalid('UserName') && getFormControl('UserName').hasError('required')" style="color: red; font-size: 12px; margin-left: 7px;">
+                    Username is required
+                </div>
+            </div>
+            <div class="field-set">
+                Password:
+                <div style="margin-top: 5px; margin-right: 5px;">
+                    <input type="password" class="rounded-textbox" style="width: 100%;" formControlName="LoginPassword">
+                </div>
+                <div *ngIf="isControlInvalid('LoginPassword')" style="color: red; font-size: 12px; margin-left: 7px;">
+                    <span *ngIf="getFormControl('LoginPassword').hasError('required')">
+                        Password is required!
+                    </span>
+                    <span *ngIf="getFormControl('LoginPassword').hasError('invalidPassword')">
+                        Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase letter and 1 number.
+                    </span>
+                </div>
+            </div>
+            <div class="field-set">
+                Confirm Password:
+                <div style="margin-top: 5px; margin-right: 5px;">
+                    <input type="password" class="rounded-textbox" style="width: 100%;" formControlName="LoginPasswordConfirm">
+                </div>
+                <div *ngIf="isControlInvalid('LoginPasswordConfirm')" style="color: red; font-size: 12px; margin-left: 7px;">
+                    <span *ngIf="getFormControl('LoginPasswordConfirm').hasError('required')">
+                        Confirm Password is required!
+                    </span>
+                    <span *ngIf="getFormControl('LoginPasswordConfirm').hasError('passwordMismatch')">
+                        Password doesn't match!
+                    </span>
+                </div>
+            </div>
+            <div class="field-set" style="padding: 10px; padding-right: 15px;">
+                <button class="default-button" style="margin: 5px; margin-top: 0px; width: 100%;" type="submit">Register</button>
+                <button class="default-button" style="margin: 5px; margin-top: 0px; width: 100%;" type="button" (click)="goBackToLoginPage()">Go back to Login page</button>
+            </div>
+        </div>
+    </form>
+</div>

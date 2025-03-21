@@ -1,0 +1,27 @@
+<div>
+    <nav class="navbar">
+        <div class="navbar-column1">
+            <div class="logo">
+                <a [routerLink]="['']" class="logo-link">
+                    <img src="assets/images/app-banner.png" alt="logo" class="logo">
+                </a>
+            </div>
+        </div>
+        <div class="navbar-column2">
+            <div>
+                <ul class="nav-links">
+                    <li class="dropdown">
+                        <a href="#" (click)="toggleDropdown($event)">{{user_full_name}} ▾</a>
+                        <ul class="dropdown-menu" *ngIf="dropdownOpen">
+                            <li><a [routerLink]="['create-article']" (click)="linkClick()">Create Article</a></li>
+                            <li><a [routerLink]="['account-settings']" (click)="linkClick()">Account Settings</a></li>
+                            <li><a (click)="logout()">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div style="height: 60px;"></div>
+    <router-outlet></router-outlet>
+</div>

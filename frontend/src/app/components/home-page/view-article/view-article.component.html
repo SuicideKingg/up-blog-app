@@ -1,0 +1,56 @@
+<div class="view-article-main">
+    <div class="view-article-title">
+        {{article.title}}
+    </div>
+    <div class="view-article-author">
+        {{article.author}}
+    </div>
+    <div class="view-article-date">
+        {{article.datePosted}}
+    </div>
+    <hr>
+    <div style="padding: 15px;">
+        {{article.content}}
+    </div>
+    <div class="comment-footer">
+        Comments
+    </div>
+    <div class="view-article-comments">
+        <div style="padding-left: 5px;">
+            <div *ngIf="isCommenting; else elseBlock">
+                <div class="view-article-input-comment-main">
+                    <form [formGroup]="commentFormGroup" (submit)="onSubmitCommentForm()">
+                        <div>
+                            <textarea rows="5" cols="100" type="text" placeholder="Enter your comment here.." formControlName="Content"></textarea>
+                        </div>
+                        <div *ngIf="isControlInvalid('Content') && getFormControl('Content').hasError('required')" style="color: red; font-size: 12px; margin-left: 7px;">
+                            This field is required!
+                        </div>
+                        <div>
+                            <button class="default-button" style="margin: 2px; font-size: 14px;" type="submit">Send Comment</button>
+                            <button class="default-button" style="margin: 2px; font-size: 14px" type="button" (click)="cancelComment()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <ng-template #elseBlock>
+                <button class="default-button" (click)="createComment()">Comment to this topic</button>
+            </ng-template>
+        </div>
+        <div *ngFor="let comment of article.comments">
+            <div class="comment-item">
+                <div class="comment-item-author-content">
+                    <div class="comment-item-author">
+                        {{comment.author}}
+                    </div>
+                    <div class="comment-item-content">
+                        {{comment.content}}
+                    </div>
+                </div>
+                <div class="comment-item-date">
+                    {{comment.datePosted}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

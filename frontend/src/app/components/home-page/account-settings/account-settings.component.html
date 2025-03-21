@@ -1,0 +1,85 @@
+<div class="create-article-main">
+    <form class="create-article-form" [formGroup]="updateAccountForm" (submit)="onSubmit()">
+        <div class="form-header">
+            Account Settings
+        </div>
+        <hr>
+        <div class="error-banner" *ngIf="errorMessage != ''">
+            <img src="assets/images/error-image.png" alt="error-image" class="error-image">
+            <div style="margin-left: 10px;">
+                {{errorMessage}}
+            </div>
+        </div>
+        <div class="field-set">
+            Name:
+            <div style="margin-top: 5px;">
+                <input type="text" class="rounded-textbox" style="width: 100%;" formControlName="Name">
+            </div>
+            <div *ngIf="isControlInvalid('Name') && getFormControl('Name').hasError('required')" style="color: red; font-size: 12px; margin-left: 7px;">
+                Title is required
+            </div>
+        </div>
+        <div class="field-set">
+            Email:
+            <div style="margin-top: 5px;">
+                <input type="text" class="rounded-textbox" style="width: 100%;" formControlName="Email">
+            </div>
+            <div *ngIf="isControlInvalid('Email')" style="color: red; font-size: 12px; margin-left: 7px;">
+                <span *ngIf="getFormControl('Email').hasError('required')">
+                    Email is required!
+                </span>
+                <span *ngIf="getFormControl('Email').hasError('email')">
+                    Invalid email format!
+                </span>
+            </div>
+        </div>
+        <hr style="margin: 15px;">
+        <div class="field-set">
+            <input type="checkbox" (change)="onChangePasswordCheckBoxChanged($event)">
+            Change Password
+        </div>
+        <div class="field-set">
+            Old Password:
+            <div style="margin-top: 5px;">
+                <input type="password" class="rounded-textbox" style="width: 100%;" formControlName="OldPassword">
+            </div>
+            <div *ngIf="isControlInvalid('OldPassword') && getFormControl('OldPassword').hasError('required')" style="color: red; font-size: 12px; margin-left: 7px;">
+                Old Password is required
+            </div>
+        </div>
+        <div class="field-set">
+            New Password:
+            <div style="margin-top: 5px;">
+                <input type="password" class="rounded-textbox" style="width: 100%;" formControlName="NewPassword">
+            </div>
+            <div *ngIf="isControlInvalid('NewPassword')" style="color: red; font-size: 12px; margin-left: 7px;">
+                <span *ngIf="getFormControl('NewPassword').hasError('required')">
+                    Password is required!
+                </span>
+                <span *ngIf="getFormControl('NewPassword').hasError('invalidPassword')">
+                    Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase letter and 1 number.
+                </span>
+            </div>
+        </div>
+        <div class="field-set">
+            Confirm Password:
+            <div style="margin-top: 5px;">
+                <input type="password" class="rounded-textbox" style="width: 100%;" formControlName="ConfirmPassword">
+            </div>
+            <div *ngIf="isControlInvalid('ConfirmPassword') && getFormControl('ConfirmPassword').hasError('required'); else elseBlock" style="color: red; font-size: 12px; margin-left: 7px;">
+                Confirm Password is required!
+            </div>
+
+            <!-- Check if password match -->
+            <ng-template #elseBlock>
+                <div *ngIf="checkBoxValue && passwordMatchInvalid()" style="color: red; font-size: 12px; margin-left: 7px;">
+                    Password didn't match
+                </div>
+            </ng-template>
+        </div>
+        <div style="padding-left: 10px;">
+            <button class="default-button" style="margin: 5px;" type="submit">Update Account</button>
+            <button class="default-button" type="button" (click)="goBackToList()">Cancel</button>
+        </div>
+    </form>
+</div>

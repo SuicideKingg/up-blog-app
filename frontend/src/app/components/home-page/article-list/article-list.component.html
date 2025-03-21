@@ -1,0 +1,28 @@
+<!-- Article list muna -->
+
+<div class="article-main">
+    <div *ngFor="let article of articleList" class="article-item-parent">
+        <div class="article-item-header">
+            
+        </div>
+        <div class="article-item-title">
+            {{article.title}}
+        </div>
+        <div class="article-item-content">
+            {{article.content | shortenText:450}}
+        </div>
+        <div class="article-item-footer">
+            <div class="article-footer-column1">
+                <div>
+                    By {{article.author}}
+                </div>
+                <div class="article_item-footer-date-posted">
+                    {{article.datePosted | date: 'dd/MM/yyyy'}}
+                </div>
+            </div>
+            <div class="article-footer-column2">
+                <button class="default-button" (click)="goToArticle(article.id)">Read more</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.default-button {
+    background-color: #0fa23b;
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease-in-out;
+}
+
+.default-button:hover {
+    background-color: #0dc143;
+}
+
+.rounded-textbox {
+    width: 250px;
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px; /* This makes it rounded */
+    outline: none;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.rounded-textbox:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}

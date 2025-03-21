@@ -1,0 +1,57 @@
+.create-article-main{
+    width: 40%;
+    margin: 0 auto; /* Centers horizontally */
+}
+
+.create-article-form{
+    background-color: #FAFAFA;
+    margin: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    padding: 15px;
+}
+
+.form-header{
+    font-size: 28px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.field-set{
+    padding: 10px;
+    padding-bottom: 2px;
+    color: rgb(101, 101, 101)
+}
+
+textarea{
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px; /* This makes it rounded */
+    outline: none;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.error-banner{
+    background-color: rgb(175, 12, 12); 
+    color: white; 
+    padding: 10px; 
+    margin: 10px; 
+    font-size: 14px;
+    border-radius: 5px; 
+    display: flex;
+    align-items: center; /* Centers vertically */
+}
+
+.error-banner .error-image{
+    width: 5%;  /* Adjust to fit container */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Crop instead of stretch */
+}

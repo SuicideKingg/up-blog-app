@@ -1,0 +1,37 @@
+<div class="create-article-main">
+    <form class="create-article-form" [formGroup]="loginForm" (submit)="onSubmit()">
+        <div class="app-title-login-form">
+            <img src="assets/images/app-banner.png" alt="logo" class="logo">
+        </div>
+        <div>
+            <div class="error-banner" *ngIf="errorMessage != ''">
+                <img src="assets/images/error-image.png" alt="error-image" class="error-image">
+                <div style="margin-left: 10px;">
+                    {{errorMessage}}
+                </div>
+            </div>
+            <div class="field-set">
+                Username:
+                <div style="margin-top: 5px; margin-right: 5px;">
+                    <input type="text" class="rounded-textbox" style="width: 100%;" formControlName="username">
+                </div>
+                <div *ngIf="isControlInvalid('username') && getFormControl('username').hasError('required')" style="color: red; font-size: 12px; margin-left: 7px;">
+                    Username is required
+                </div>
+            </div>
+            <div class="field-set">
+                Password:
+                <div style="margin-top: 5px; margin-right: 5px;">
+                    <input type="password" class="rounded-textbox" style="width: 100%;" formControlName="password">
+                </div>
+                <div *ngIf="isControlInvalid('password') && getFormControl('password').hasError('required')" style="color: red; font-size: 12px; margin-left: 7px;">
+                    Password is required
+                </div>
+            </div>
+            <div class="field-set" style="padding: 10px; padding-right: 15px;">
+                <button class="default-button" style="margin: 5px; margin-top: 0px; width: 100%;" type="submit">Login</button>
+                <button class="default-button" style="margin: 5px; margin-top: 0px; width: 100%;" type="button" (click)="goToRegisterPage()">Register</button>
+            </div>
+        </div>
+    </form>
+</div>

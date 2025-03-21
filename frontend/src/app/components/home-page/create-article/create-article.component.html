@@ -1,0 +1,36 @@
+<div class="create-article-main">
+    <form class="create-article-form" [formGroup]="articleForm" (submit)="onSubmit()">
+        <div class="form-header">
+            Create new article
+        </div>
+        <hr>
+        <div class="error-banner" *ngIf="errorMessage != ''">
+            <img src="assets/images/error-image.png" alt="error-image" class="error-image">
+            <div style="margin-left: 10px;">
+                {{errorMessage}}
+            </div>
+        </div>
+        <div class="field-set">
+            Title:
+            <div style="margin-top: 5px;">
+                <input type="text" class="rounded-textbox" style="width: 100%;" formControlName="title">
+            </div>
+            <div *ngIf="isControlInvalid('title') && getFormControl('title').hasError('required')" style="color: red; font-size: 12px; margin-left: 7px;">
+                Title is required
+            </div>
+        </div>
+        <div class="field-set">
+            Content:
+            <div>
+                <textarea rows="5" cols="50" style="width: 100%;" formControlName="content"></textarea>
+            </div>
+            <div *ngIf="isControlInvalid('content') && getFormControl('content').hasError('required')" style="color: red; font-size: 12px; margin-left: 7px;">
+                Title is required
+            </div>
+        </div>
+        <div style="padding-left: 10px;">
+            <button class="default-button" style="margin: 5px;" type="submit">Create Article</button>
+            <button class="default-button" type="button" (click)="goBackToList()">Cancel</button>
+        </div>
+    </form>
+</div>
