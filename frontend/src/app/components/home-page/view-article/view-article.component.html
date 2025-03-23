@@ -1,4 +1,4 @@
-<div class="view-article-main">
+<div *ngIf="articleFound; else elseBlock" class="view-article-main">
     <div class="view-article-title">
         {{article.title}}
     </div>
@@ -54,3 +54,11 @@
         </div>
     </div>
 </div>
+<ng-template #elseBlock>
+    <div style="text-align: center;padding: 10px;font-size: 24px;color: rgb(101, 101, 101);">
+        Article not found!
+    </div>
+    <div style="display: flex;justify-content: center;">
+        <button class="default-button" style="margin: 2px; font-size: 14px" type="button" (click)="goBackToList()">Go Back to list</button>
+    </div>
+</ng-template>

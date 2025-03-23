@@ -26,10 +26,7 @@ export const authInterceptor: HttpInterceptorFn = (req:HttpRequest<unknown>, nex
         if (error.status === 401) {
           return handle401Error(authService, router, req, next);
         }
-        // Force logout if its different error.
-        isRefreshing = false;
-        authService.logout();
-        router.navigate(['/login']);
+
         return throwError(() => error);
       }),
       finalize(() => loadingService.hide())

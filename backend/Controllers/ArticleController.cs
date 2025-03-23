@@ -86,7 +86,7 @@ namespace UpBlogApp.Controllers
             }).Where(s => s.ID == id).FirstOrDefaultAsync();
 
             if(retrieveArticleDTO == null){
-                return StatusCode(StatusCodes.Status500InternalServerError, "Article not found!");
+                return StatusCode(StatusCodes.Status404NotFound, "Article not found!");
             }
 
             return StatusCode(StatusCodes.Status200OK, retrieveArticleDTO);

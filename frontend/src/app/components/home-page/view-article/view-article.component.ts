@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Article } from '../../../models/article.model';
 import { NgFor, NgIf } from '@angular/common';
 import { ArticleEndpointsService } from '../../../services/article-enpoints.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommentEndpointsService } from '../../../services/comment-endpoints.service';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../../services/auhentication.service';
@@ -21,9 +21,10 @@ export class ViewArticleComponent implements OnInit {
   isCommenting:boolean=false;
   currentArticleId:number=0;
   currentUserId:number=0;
+  articleFound:boolean=true;
   
 
-  constructor(private articleService:ArticleEndpointsService, private commentService:CommentEndpointsService, private authService:AuthenticationService, private activatedRoute:ActivatedRoute, private fb:FormBuilder) {
+  constructor(private articleService:ArticleEndpointsService, private commentService:CommentEndpointsService, private authService:AuthenticationService, private activatedRoute:ActivatedRoute, private fb:FormBuilder, private router:Router) {
     this.commentFormGroup = this.fb.group({
       ID:[0],
       Content:['',[Validators.required]],
@@ -81,6 +82,9 @@ export class ViewArticleComponent implements OnInit {
         this.currentArticleId = param_id;
       },
       error: err => {
+        if(err.status === 404){
+          this.articleFound = false;
+        }
         console.log(err);
       }
     });
@@ -106,6 +110,10 @@ export class ViewArticleComponent implements OnInit {
         } 
       });
     }
+  }
+
+  goBackToList(){
+    this.router.navigate(['']);
   }
 
   cancelComment(){
