@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Article } from '../../../models/article.model';
 import { NgFor, NgIf } from '@angular/common';
 import { ArticleEndpointsService } from '../../../services/article-enpoints.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommentEndpointsService } from '../../../services/comment-endpoints.service';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../../services/auhentication.service';
 
 @Component({
   selector: 'app-view-article',
-  imports: [NgFor, NgIf, ReactiveFormsModule],
+  imports: [NgFor, NgIf, ReactiveFormsModule,RouterLink],
   templateUrl: './view-article.component.html',
   styleUrl: './view-article.component.css'
 })
@@ -110,10 +110,6 @@ export class ViewArticleComponent implements OnInit {
         } 
       });
     }
-  }
-
-  goBackToList(){
-    this.router.navigate(['']);
   }
 
   cancelComment(){
