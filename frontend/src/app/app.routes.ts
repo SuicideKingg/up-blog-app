@@ -6,6 +6,7 @@ import { CreateArticleComponent } from './components/home-page/create-article/cr
 import { UserLoginRegisterComponent } from './components/user-login-register/user-login-register.component';
 import { UserRegisterComponent } from './components/user-register/user-register.component';
 import { AccountSettingsComponent } from './components/home-page/account-settings/account-settings.component';
+import { NotFoundPageComponent } from './components/shared/not-found-page/not-found-page.component';
 
 export const routes: Routes = [
     {
@@ -19,5 +20,6 @@ export const routes: Routes = [
         ],
     },
     { path:'login', component: UserLoginRegisterComponent },
-    { path:'register', component: UserRegisterComponent }
+    { path:'register', component: UserRegisterComponent },
+    { path: '**', component: NotFoundPageComponent}
 ];
